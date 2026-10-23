@@ -48,8 +48,9 @@ All models were trained and evaluated using the MS COCO image captioning dataset
 
 Model performance was evaluated using two standard image captioning metrics:
 
-- **BLEU-4** ? measures the overlap between generated captions and reference captions.
-- **CIDEr** ? measures similarity to reference captions using TF-IDF-weighted n-grams.
+**BLEU-4** measures how closely a generated caption matches reference captions by comparing word sequences (n-grams) of lengths 1 to 4. For example, in *"A black cat sits on the sofa"*, it evaluates individual words (*cat*), word pairs (*black cat*), triples (*a black cat*), and four-word sequences (*a black cat sits*). The metric combines the precision of these matches and penalizes overly short captions.
+
+**CIDEr** also compares n-grams of lengths 1 to 4, but uses TF-IDF weighting to emphasize informative word sequences. Common expressions such as *"the"* or *"on"* receive lower weights, while more distinctive phrases such as *"black cat"* may receive higher weights. Unlike BLEU-4, CIDEr measures similarity using weighted n-gram vectors and is designed to reward agreement with multiple human-written captions.
 
 ## The classic that explains it all: **Show & Tell**
 
