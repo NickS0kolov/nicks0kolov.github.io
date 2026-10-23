@@ -17,7 +17,7 @@ const vit = await readFile(new URL('projects/vision-transformer/index.html', roo
 assert.match(vit, /astro-code/,'Code must have syntax highlighting');
 const captioning = await readFile(new URL('projects/image-captioning/index.html', root), 'utf8');
 assert.equal((vit.match(/<figure>/g)||[]).length, 8, 'All ViT figures must be present');
-assert.equal((captioning.match(/<figure>/g)||[]).length, 15, 'All captioning figures must be present');
+assert.equal((captioning.match(/<figure>/g)||[]).length, 14, 'Captioning figures must exclude the incorrectly reused training plot');
 assert.doesNotMatch(vit + captioning, /Research overview\.|Read the complete article|<img[^>]+src="https?:/);
 const articleCount = (await readdir(new URL('../src/pages/projects/', import.meta.url))).filter(file => file.endsWith('.md')).length;
 assert.equal(htmlFiles.length, 3 + articleCount, 'Expected all sections, articles, and the 404 page');
