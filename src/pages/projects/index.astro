@@ -1,0 +1,6 @@
+﻿---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+const projects = Object.values(import.meta.glob('./*.md', { eager: true }));
+---
+<Base title="Projects — Nick Sokolov"><section class="page-intro"><p class="eyebrow">THE RESEARCH NOTEBOOK</p><h1>Projects &<br /><em>experiments.</em></h1><p>Questions turned into code. Explorations in computer vision and learning, with articles and companion notebooks.</p></section><div class="project-grid projects-page">{projects.map((entry,index) => <Card entry={entry} index={index} />)}</div></Base>

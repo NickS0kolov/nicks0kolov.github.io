@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+const { title = 'Nick Sokolov — AI Research', description = 'Research notes, model experiments, and robotics by Nick Sokolov.' } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [['Home', '/'], ['Projects', '/projects/']];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+    <meta property="og:type" content="website" /><meta property="og:url" content={new URL(path, Astro.site)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="shell">
+      <header class="header">
+        <a href="/" class="wordmark" aria-label="Nick Sokolov home"><span class="brand-symbol">n<span>.</span></span><span>Nick Sokolov<span class="brand-sub">AI RESEARCH</span></span></a>
+        <nav aria-label="Main navigation">{nav.map(([label, href]) => <a href={href} class:list={{active: href === '/' ? path === '/' : path.startsWith(href)}} aria-current={(href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined}>{label}</a>)}</nav>
+        <a class="github-link" href="https://github.com/nicks0kolov" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </header>
+      <main id="main"><slot /></main>
+      <footer><a href="/" class="footer-name">Nick Sokolov <span>© {new Date().getFullYear()}</span></a><a href="https://github.com/nicks0kolov">Find me on GitHub</a></footer>
+    </div>
+    <script>
+      document.querySelectorAll('pre').forEach(pre => {
+        const button = document.createElement('button');
+        button.className = 'copy-code'; button.textContent = 'Copy'; button.type = 'button';
+        button.setAttribute('aria-label', 'Copy code to clipboard');
+        button.addEventListener('click', async () => {
+          try { await navigator.clipboard.writeText(pre.querySelector('code')?.textContent || ''); button.textContent = 'Copied'; }
+          catch { button.textContent = 'Select code to copy'; }
+          setTimeout(() => { button.textContent = 'Copy'; }, 1800);
+        });
+        pre.append(button);
+      });
+    </script>
+  </body>
+</html>

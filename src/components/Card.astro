@@ -1,0 +1,10 @@
+---
+const { entry, index = 0 } = Astro.props;
+const { frontmatter: p, url } = entry;
+---
+<a href={url} class="project-card">
+  <div class="card-visual"><img src={p.image} alt={p.imageAlt} width="800" height="520" loading={index === 0 ? 'eager' : 'lazy'} /><span class="visual-label">{p.category}</span><span class="card-index">0{index + 1} /</span><div class="card-summary"><p>{p.description}</p><span>Explore the notebook</span></div></div>
+  <div class="card-meta"><span>{p.kind}</span><span>{p.date}</span></div>
+  <h3>{p.title}</h3>
+  <p class="card-subtitle">{p.subtitle}</p>
+</a>
