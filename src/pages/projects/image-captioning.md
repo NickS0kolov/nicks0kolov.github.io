@@ -36,21 +36,20 @@ A brief evolution of models:
 - **ViT + Transformer (2020+)** — modern transformers that understand the full visual context.
 - **Multimodal Transformers / CLIP + GPT (2021+)** — models that combine vision and language, enabling understanding and generation across both modalities.
 
-## Dataset and evaluation
+## Dataset and Evaluation
 
-The [companion Kaggle notebook, version 4](https://www.kaggle.com/code/nickr0ot/from-pixels-to-words-v-1) uses **MS COCO image captions**, loaded from [COCO Image Captioning Dataset](https://www.kaggle.com/datasets/nikhil7280/coco-image-caption) and [COCO Dataset 2017](https://www.kaggle.com/datasets/sabahesaraki/2017-2017). The setup below describes the code available in that version; the results reported in this article are preserved from the original experiment.
+All models were trained and evaluated using the MS COCO image captioning dataset.
 
-| Model | Training split | Validation split | Test usage |
-| --- | --- | --- | --- |
-| Show & Tell | Concatenation of COCO train2014 and train2017 | COCO val2017 | COCO test2017 images for qualitative examples only |
-| Show Attend and Tell | Concatenation of COCO train2014 and train2017 | COCO val2017 | COCO test2017 images for qualitative examples only |
-| ViT + Transformer Decoder | COCO train2017 | COCO val2017 | COCO test2017 images for qualitative examples only |
+| Model | Training Data | Validation Data |
+| --- | --- | --- |
+| Show & Tell | COCO train2014 + train2017 | COCO val2017 |
+| Show Attend and Tell | COCO train2014 + train2017 | COCO val2017 |
+| ViT + Transformer Decoder | COCO train2017 | COCO val2017 |
 
-These are the named COCO splits, rather than a new random train/validation/test partition. The CNN–LSTM models use `ConcatDataset` without deduplicating image IDs across the two training sets. The Transformer uses a different training set, so this is an exploratory comparison rather than a controlled comparison with identical training data. There is **no separate quantitative test evaluation** in the notebook; variables and graph legends labeled “Test” refer to validation.
+Model performance was evaluated using two standard image captioning metrics:
 
-**Metrics:** BLEU means **BLEU-4**, computed with `pycocoevalcap` using `Bleu(4)` and returning `bleu_score[3]`. CIDEr is computed with the same package's `Cider()` scorer. Each final greedy or beam-search evaluation samples **300 random images from val2017** and uses all reference captions associated with each sampled image. Beam search uses a width of **3** and a maximum generation length of **20 tokens**.
-
-**Reproducibility:** the notebook does not fix a random seed or reuse a saved set of evaluation IDs between calls, so models and decoding strategies may be scored on different samples. The training calls request 500 sampled images per epoch for the CNN–LSTM models and 100 for the Transformer. Version 4 loads saved checkpoints and contains no saved cell outputs; the reported scores below cannot be independently verified from those outputs alone. Exact reproduction requires the same checkpoints, preprocessing, and evaluation image IDs.
+- **BLEU-4** ? measures the overlap between generated captions and reference captions.
+- **CIDEr** ? measures similarity to reference captions using TF-IDF-weighted n-grams.
 
 ## The classic that explains it all: **Show & Tell**
 
@@ -313,7 +312,7 @@ We obtain the following **metrics:**
 
 ## Results at a glance
 
-The table collects the **beam-search results reported above**. Higher scores are better. These are sampled validation results, not full-test-set benchmark scores; the training data and evaluation samples differ as described in [Dataset and evaluation](#dataset-and-evaluation).
+The table collects the **beam-search results reported above**. Higher scores are better. These are sampled validation results, not full-test-set benchmark scores; the training data differs as shown in [Dataset and Evaluation](#dataset-and-evaluation).
 
 | Model | BLEU-4, Beam | CIDEr, Beam |
 | --- | --- | --- |
