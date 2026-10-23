@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
-const { title = 'Nick Sokolov — AI Research', description = 'Research notes, model experiments, and robotics by Nick Sokolov.' } = Astro.props;
+const { title = 'Nick Sokolov — AI Research', description = 'Research notes, model experiments, and robotics by Nick Sokolov.', image = '/images/robot-manipulation-transparent.png' } = Astro.props;
 const path = Astro.url.pathname;
 const nav = [['Home', '/'], ['Projects', '/projects/']];
 ---
@@ -13,6 +13,7 @@ const nav = [['Home', '/'], ['Projects', '/projects/']];
     <title>{title}</title><meta name="description" content={description} />
     <link rel="canonical" href={new URL(path, Astro.site)} />
     <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
     <meta property="og:type" content="website" /><meta property="og:url" content={new URL(path, Astro.site)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>

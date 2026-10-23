@@ -2,4 +2,4 @@
 import Base from './Base.astro';
 const { frontmatter: p } = Astro.props;
 ---
-<Base title={`${p.articleTitle || p.title} — Nick Sokolov`} description={p.description}><article><header class="article-header"><a class="text-link" href="/projects/">All projects</a><p class="eyebrow">{p.category} / {p.date}</p><h1>{p.articleTitle || p.title}</h1><p>{p.description}</p><div class="article-meta"><span>Nick Sokolov</span><span>{p.kind}</span><a href={p.notebook}>Code on Kaggle</a></div></header><div class="article-body prose"><slot /></div></article></Base>
+<Base title={`${p.articleTitle || p.title} — Nick Sokolov`} description={p.description} image={p.image}><article><header class="article-header"><a class="text-link" href="/projects/">All projects</a><p class="eyebrow">{p.category} / {p.date}</p><h1>{p.articleTitle || p.title}</h1><p>{p.description}</p><div class="article-meta"><span>Nick Sokolov</span><span>{p.kind}</span><a href={p.notebook}>Code on Kaggle</a></div></header><div class="article-body prose"><slot /></div></article></Base>
