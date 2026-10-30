@@ -1,5 +1,42 @@
 ---
 import Base from './Base.astro';
 const { frontmatter: p } = Astro.props;
+const codeUrl = p.code || p.notebook;
 ---
-<Base title={`${p.articleTitle || p.title} — Nick Sokolov`} description={p.description} image={p.image}><article><header class="article-header"><a class="text-link" href="/projects/">All projects</a><p class="eyebrow">{p.category} / {p.date}</p><h1>{p.articleTitle || p.title}</h1><p>{p.description}</p><div class="article-meta"><span>Nick Sokolov</span><span>{p.kind}</span><a href={p.notebook}>Code on Kaggle</a></div></header><div class="article-body prose"><slot /></div></article></Base>
+<script>
+  const pca = document.querySelector<HTMLElement>('.pca-comparison');
+  if (pca) {
+    const buttons = pca.querySelectorAll<HTMLButtonElement>('button[data-layer]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      pca.dataset.layer = button.dataset.layer;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      pca.querySelector('img')!.alt = `PCA visual embeddings at Layer ${button.dataset.layer}`;
+    }));
+  }
+  const comparison = document.querySelector<HTMLElement>('.alignment-comparison');
+  if (comparison) {
+    const buttons = comparison.querySelectorAll<HTMLButtonElement>('button[data-teacher]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      comparison.dataset.teacher = button.dataset.teacher;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      comparison.querySelector('img')!.alt = `${button.textContent} patch-level cosine similarity maps`;
+    }));
+  }
+  const gallery = document.querySelector('.libero-demos');
+  if (gallery) {
+    const video = gallery.querySelector('video')!;
+    const title = gallery.querySelector('.libero-task-title')!;
+    const buttons = gallery.querySelectorAll<HTMLButtonElement>('button[data-task]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      if (button.getAttribute('aria-pressed') === 'true') return;
+      video.pause();
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      title.textContent = `Task ${button.dataset.task} — ${button.dataset.title}`;
+      video.src = button.dataset.src!;
+      video.querySelector('a')!.href = video.src;
+      video.load();
+      video.play().catch(() => {});
+    }));
+  }
+</script>
+<Base title={`${p.articleTitle || p.title} — Nick Sokolov`} description={p.description} image={p.image}><article><header class="article-header"><a class="text-link" href="/projects/">All projects</a><p class="eyebrow">{p.category} / {p.date}</p><h1>{p.articleTitle || p.title}</h1><p>{p.description}</p><div class="article-meta"><span>Nick Sokolov</span><span>{p.kind}</span>{codeUrl && <a href={codeUrl}>{p.code ? 'Code on GitHub' : 'Code on Kaggle'}</a>}</div></header><div class="article-body prose"><slot /></div></article></Base>

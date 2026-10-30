@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
-const projects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
+const projects = Object.values(import.meta.glob('./projects/*.md', { eager: true }))
+  .sort((a, b) => Number(b.url === '/projects/smolvla-training-strategies/') - Number(a.url === '/projects/smolvla-training-strategies/'));
 ---
 <Base>
   <section class="hero">

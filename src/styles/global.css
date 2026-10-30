@@ -465,8 +465,20 @@ footer>a {
 .prose th,.prose td {
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
+}
+
+.prose th[align="center"],.prose td[align="center"] {
+  text-align: center;
+}
+
+.article-body table {
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  transform: none;
 }
 
 .prose code {
@@ -958,4 +970,108 @@ footer>a {
 
 .hero-description {
   text-wrap: pretty;
+}
+
+.libero-demos {
+  margin: 26px 0 38px;
+}
+
+.alignment-comparison .alignment-crop {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1440 / 1280;
+  margin-top: 16px;
+}
+
+.alignment-comparison .alignment-crop img {
+  position: absolute;
+  top: -2.34375%;
+  left: -2.083333%;
+  width: 207.222222%;
+  max-width: none;
+}
+
+.alignment-comparison[data-teacher="radio"] .alignment-crop img {
+  left: -105.138889%;
+}
+
+.pca-comparison .pca-crop {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2048 / 760;
+  margin-top: 16px;
+}
+
+.pca-comparison .pca-crop img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.pca-comparison[data-layer="16"] .pca-crop img {
+  top: -103.289474%;
+}
+
+.article-body .article-hook {
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+@media (min-width: 1100px) {
+  .article-body table {
+    width: max-content;
+    min-width: 0;
+    max-width: min(1100px, calc(100vw - 128px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .article-body .figure-wide {
+    width: 120%;
+    margin-left: -10%;
+  }
+  .article-body .figure-extra-wide {
+    width: 130%;
+    margin-left: -15%;
+  }
+}
+
+.libero-task-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.libero-task-picker button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 10px 14px;
+  font: 12px 'IBM Plex Mono', monospace;
+  cursor: pointer;
+}
+
+.libero-task-picker button:hover {
+  border-color: var(--red);
+}
+
+.libero-task-picker button[aria-pressed="true"] {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+.libero-task-title {
+  margin: 18px 0 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.libero-demos video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  max-height: 460px;
+  margin: 0 auto;
+  background: #000;
 }
