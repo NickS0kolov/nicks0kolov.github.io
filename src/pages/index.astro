@@ -10,5 +10,5 @@ const projects = Object.values(import.meta.glob('./projects/*.md', { eager: true
     <div class="hero-art"><img src="/images/robot-manipulation-transparent.png" alt="Line illustration of a robotic arm reaching for a cube, with a red motion trajectory" width="1448" height="1086" /><div class="plot-caption"><span>FIG. 01 — PERCEPTION TO ACTION</span></div></div>
   </section>
   <div class="research-strip"><span class="strip-label">AREAS OF INTEREST</span><ul class="research-interests"><li>Vision-Language-Action Models (VLA)</li><li>World Action Models (WAM)</li><li>AI Cognition &amp; Interpretability</li><li>Vision-Language Models (VLM)</li><li>Robot Learning</li></ul></div>
-  <section class="work-section"><div class="section-heading"><div><p class="eyebrow">THE RESEARCH NOTEBOOK</p><h2>Selected explorations</h2></div><a class="text-link" href="/projects/">All projects</a></div><div class="project-grid">{projects.map((entry, index) => <Card entry={entry} index={index} />)}</div></section>
+  <section class="work-section"><div class="section-heading"><div><h2>Selected explorations</h2></div><a class="text-link" href="/projects/">All projects</a></div><div class="project-grid">{projects.map((entry, index) => <Card entry={entry} index={index} />)}</div></section>
 </Base>

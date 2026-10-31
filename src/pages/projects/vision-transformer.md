@@ -4,7 +4,7 @@ title: Vision Transformer, from scratch
 subtitle: From image patches to attention maps.
 description: Implementing a Vision Transformer step by step, training on CIFAR-10, and inspecting where the model attends.
 category: COMPUTER VISION
-kind: Technical article
+kind: Technical notes
 date: Jun 28, 2025
 image: /images/vit.png
 imageAlt: Vision Transformer architecture from the original Medium article

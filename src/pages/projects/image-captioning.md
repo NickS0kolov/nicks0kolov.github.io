@@ -4,7 +4,7 @@ title: From Pixels to Words
 subtitle: How machines learned to describe the world.
 description: Building image-captioning models, from CNN–LSTM pipelines to attention and Transformer decoders.
 category: VISION & LANGUAGE
-kind: Technical article
+kind: Technical notes
 date: Oct 21, 2025
 image: /images/image-captioning/figure-01.png
 imageAlt: Ice-covered stop sign in a snowy landscape, the original article cover
