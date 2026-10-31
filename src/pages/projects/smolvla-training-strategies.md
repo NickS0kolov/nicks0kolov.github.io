@@ -276,7 +276,7 @@ I examined cosine similarity between projected student features and their corres
 
 The **DINOv3** alignment maps often showed lower similarity around the robot gripper and manipulated objects than in background regions. The **RADIO** maps were more spatially uniform in these examples.
 
-One interpretation is that background features were easier to align than task-relevant object and gripper features, particularly for DINOv3. The maps alone do not quantify the overall contribution of these regions to the loss or explain the difference in Success Rate.
+One possible interpretation is that background features were easier to align than task-relevant object and gripper features, particularly for DINOv3. However, the maps alone do not quantify the overall contribution of these regions to the alignment loss or explain the differences in Success Rate. It is also important to note that the two configurations used different alignment weights (**0.1 for DINOv3 and 0.2 for RADIO**) and different alignment layers, making it difficult to attribute the observed differences solely to the choice of teacher model.
 
 ### 6.3 Matched and Shuffled Correspondence Checks
 
