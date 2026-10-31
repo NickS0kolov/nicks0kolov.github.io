@@ -4,7 +4,7 @@ title: Evaluating SmolVLA Training Strategies
 subtitle: Fine-tuning, visual alignment, and robotic task success.
 description: Comparing SmolVLA fine-tuning strategies on LIBERO and LIBERO-Plus, and investigating how visual alignment changes representations and robot performance.
 category: ROBOT LEARNING
-kind: Research article
+kind: Research notes
 date: Oct 31, 2026
 image: /images/smolvla-training-strategies/task-0.gif
 imageAlt: SmolVLA All-LoRA putting alphabet soup and tomato sauce in a basket
