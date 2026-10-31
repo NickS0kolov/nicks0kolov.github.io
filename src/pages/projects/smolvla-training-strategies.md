@@ -10,6 +10,7 @@ image: /images/smolvla-training-strategies/task-0.gif
 imageAlt: SmolVLA All-LoRA putting alphabet soup and tomato sauce in a basket
 articleTitle: "Evaluating SmolVLA Training Strategies: An Empirical Study on LIBERO and LIBERO-Plus"
 code: https://github.com/NickS0kolov/lerobot/tree/feat/smolvla-alignment
+huggingface: https://huggingface.co/NickSokolov/SmolVLA-LIBERO10-Experiments
 ---
 <figure class="article-hook"><img src="/images/smolvla-training-strategies/task-0.gif" alt="SmolVLA All-LoRA putting alphabet soup and tomato sauce in a basket" width="360" height="360" loading="eager" /><figcaption>SmolVLA All-LoRA in action / LIBERO-10, Task 0.</figcaption></figure>
 
@@ -29,6 +30,8 @@ I evaluated robotic success on **LIBERO-10** and robustness to **Background Text
 - **The alignment variants exhibited strong spectral concentration:** PC1 explained **93.21%** of the variance at the DINOv3 target layer and **83.78%** at the RADIO target layer.
 
 These are empirical observations about the tested SmolVLA configurations, rather than evidence that representation alignment is ineffective in general.
+
+The implementation is available on [GitHub](https://github.com/NickS0kolov/lerobot/tree/feat/smolvla-alignment), and the model checkpoints are available on [Hugging Face](https://huggingface.co/NickSokolov/SmolVLA-LIBERO10-Experiments).
 
 ---
 
@@ -60,6 +63,7 @@ All training runs used a micro-batch size of **1** and gradient accumulation ove
 | **All-LoRA** | LoRA adapters across VLM and Action Expert | 5 × 10⁻⁴ → 5 × 10⁻⁵ | 64 / 64 | None |
 | **All-LoRA + DINOv3** | Same All-LoRA setup | 5 × 10⁻⁴ → 5 × 10⁻⁵ | 64 / 64 | Layer 15, weight 0.1 |
 | **All-LoRA + RADIO** | Same All-LoRA setup | 5 × 10⁻⁴ → 5 × 10⁻⁵ | 64 / 64 | Layer 16 post-norm, weight 0.2 |
+| **All-LoRA + RADIO Layer8** | Same All-LoRA setup | 5 × 10⁻⁴ → 5 × 10⁻⁵ | 64 / 64 | Layer 8, weight 0.2 |
 
 The LoRA configurations targeted the corresponding linear layers. In the alignment variants, the pretrained visual teacher and the alignment projector were **frozen**. Further implementation details are available in the [SmolVLA alignment branch](https://github.com/NickS0kolov/lerobot/tree/feat/smolvla-alignment).
 
@@ -379,7 +383,7 @@ These experiments are **mechanistic probes**, not numerical replications of the 
 
 ### 9.1 Concentration Can Accompany Variance Expansion
 
-One synthetic run, using alignment through a **frozen random MLP with LayerNorm**, produced the following change:
+For the frozen LN→MLP, AdamW, alignment-only condition, averaging over five initialization/data-order seeds produced the following changes:
 
 | Metric | Before alignment | After alignment |
 |---|---:|---:|
@@ -482,3 +486,4 @@ The central finding is that **preserving general-purpose linear separability, in
 - [LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models](https://openaccess.thecvf.com/content/CVPR2026/html/Fei_LIBERO-Plus_A_Progressive_Robustness_Benchmark_for_Visual-Language-Action_Models_CVPR_2026_paper.html) — OOD robustness evaluation.
 - [Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization](https://arxiv.org/abs/2510.25616) — visual alignment method motivating the alignment experiments.
 - [SmolVLA alignment implementation](https://github.com/NickS0kolov/lerobot/tree/feat/smolvla-alignment) — project implementation and code.
+- [SmolVLA LIBERO-10 experiments on Hugging Face](https://huggingface.co/NickSokolov/SmolVLA-LIBERO10-Experiments).
