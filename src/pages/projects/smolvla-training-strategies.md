@@ -486,4 +486,4 @@ The central finding is that **preserving general-purpose linear separability, in
 - [LIBERO-Plus: A Progressive Robustness Benchmark for Visual-Language-Action Models](https://openaccess.thecvf.com/content/CVPR2026/html/Fei_LIBERO-Plus_A_Progressive_Robustness_Benchmark_for_Visual-Language-Action_Models_CVPR_2026_paper.html) — OOD robustness evaluation.
 - [Don't Blind Your VLA: Aligning Visual Representations for OOD Generalization](https://arxiv.org/abs/2510.25616) — visual alignment method motivating the alignment experiments.
 - [SmolVLA alignment implementation](https://github.com/NickS0kolov/lerobot/tree/feat/smolvla-alignment) — project implementation and code.
-- [SmolVLA LIBERO-10 experiments on Hugging Face](https://huggingface.co/NickSokolov/SmolVLA-LIBERO10-Experiments).
+- [SmolVLA LIBERO-10 experiments on Hugging Face](https://huggingface.co/NickSokolov/SmolVLA-LIBERO10-Experiments) — model checkpoints for the evaluated training configurations.
